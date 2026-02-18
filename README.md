@@ -330,7 +330,7 @@ If you use this backtester in your research, please cite:
   author = {Le, Chau},
   title = {Mean Reversion Backtester v3.3: Two-Layer Portfolio Engine},
   year = {2026},
-  url = {https://github.com/yourusername/mean-reversion-backtester}
+  url = {https://github.com/chaulemuoichin/quant-mean-reversion-engine-v3.3}
 }
 ```
 
@@ -358,7 +358,7 @@ MIT License - see LICENSE file for details.
 
 **Chau Le**  
 📧 chau.le@marquette.edu  
-🔗 [LinkedIn](https://www.linkedin.com/in/your-profile) | [GitHub](https://github.com/yourusername)
+🔗 [LinkedIn](https://www.linkedin.com/in/lechau1801/) | [GitHub](https://github.com/chaulemuoichin)
 
 ---
 
