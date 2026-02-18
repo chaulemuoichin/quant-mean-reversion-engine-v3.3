@@ -65,7 +65,7 @@ This backtester implements an advanced mean reversion trading system that combin
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mean-reversion-backtester.git
+git clone https://github.com/chaulemuoichin/quant-mean-reversion-engine-v3.3
 cd mean-reversion-backtester
 
 # Install dependencies
