@@ -58,16 +58,22 @@ This backtester implements a two-layer portfolio system separating core (buy-and
 ## Sample Output
 
 ### Equity Curves (NVDA, 5y, adaptive)
-![Equity Curves](samples/01_NVDA_TL_mc060_5y_adaptive_sample_benchmark.png)
+<img width="1500" height="750" alt="NVDA_benchmark" src="https://github.com/user-attachments/assets/0af442f7-0cdc-40b2-bda1-a95c38881c3c" />
 
-### Return Attribution
-![Return Contribution](samples/01_NVDA_TL_mc060_5y_adaptive_sample_contribution.png)
+
+### Return Contribution
+<img width="1500" height="750" alt="NVDA_contribution" src="https://github.com/user-attachments/assets/2e88d45d-3dce-4fb1-9f4e-07e5cbee79e4" />
+
 
 ### Drawdown vs. Baseline
-![Drawdown](samples/01_NVDA_TL_mc060_5y_adaptive_sample_drawdown.png)
+<img width="1500" height="525" alt="NVDA_drawdown" src="https://github.com/user-attachments/assets/eccccdc2-668f-4408-bc64-45b2982423c0" />
 
-### Tactical Exposure vs. Price
-![Exposure](samples/01_NVDA_TL_mc060_5y_adaptive_sample_exposure.png)
+### Exposure vs. Price
+<img width="1200" height="750" alt="NVDA_exposure" src="https://github.com/user-attachments/assets/0baccd61-e8a5-4cfa-946f-93cd12d68528" />
+
+### Underwater Chart
+<img width="1500" height="525" alt="NVDA_underwater" src="https://github.com/user-attachments/assets/81b06430-c2a1-4aa1-a972-18381859f2de" />
+
 
 ---
 
