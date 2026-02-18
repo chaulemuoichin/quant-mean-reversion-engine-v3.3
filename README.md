@@ -106,11 +106,7 @@ quant-mean-reversion-engine-v3.3/
 │   ├── CONTRIBUTING.md
 │   └── SETUP.md
 ├── samples/
-│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_benchmark.png
-│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_contribution.png
-│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_drawdown.png
-│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_exposure.png
-│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_underwater.png
+│   ├── 01_NVDA_TL_mc0_20260218_011958.txt
 │   └── 01_NVDA_TL_mc060_20260218_012003.txt
 ├── .gitattributes
 ├── .gitignore
