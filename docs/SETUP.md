@@ -474,6 +474,6 @@ docker run -v $(pwd)/reports:/app/reports mean-reversion-backtester
 
 ## Support
 
-- **Issues**: https://github.com/yourusername/mean-reversion-backtester/issues
+- **Issues**: https://github.com/chaulemuoichin/quant-mean-reversion-engine-v3.3/issues
 - **Email**: chau.le@marquette.edu
 - **LinkedIn**: https://www.linkedin.com/in/your-profile
