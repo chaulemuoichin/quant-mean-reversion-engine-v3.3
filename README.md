@@ -1,4 +1,4 @@
-# Mean Reversion Backtester v3.3
+# Quantitative Mean Reversion Engine v3.3
 
 A sophisticated **long-only mean reversion trading strategy backtester** featuring a two-layer portfolio architecture (core + tactical sleeves), adaptive regime classification, volatility-adjusted position sizing, and comprehensive statistical validation.
 
