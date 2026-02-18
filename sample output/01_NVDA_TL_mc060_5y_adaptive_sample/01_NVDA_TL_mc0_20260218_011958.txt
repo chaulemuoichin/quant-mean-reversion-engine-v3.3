@@ -1,0 +1,221 @@
+==========================================================================
+           MEAN REVERSION BACKTESTER v3.3 - TWO-LAYER PORTFOLIO           
+NVDA -- NVIDIA Corporation
+==========================================================================
+Generated : 2026-02-18 01:20:02
+Bars      : 1255
+Capital   : $100,000  (Core 80% = $80,000  |  Tactical 20% = $20,000)
+Core Entry: Adaptive (base=60, slow=120, fast=40, vol_target=12%, dd_window=252)
+  States  : HIGH_VOL_DRAWDOWN=1240, NEUTRAL=4, PULLBACK=11
+
+==========================================================================
+DATA QUALITY
+==========================================================================
+  Price Field     : requested=adjclose used=adjclose
+  Scaling         : ohlc_scaled_by_adjclose=True, volume_inverse_scaled=True
+  Data First Dt   : 2021-02-18
+  Data Last Dt    : 2026-02-17
+  Bars Downloaded : 1255
+  Calendar Span   : 1826 days
+  Duplicate Timestamps : 0
+  Monotonic Index : True
+  Gap Stats       : max_gap_days=4, n_gaps_over_3d=0
+  Missing Est     : 3.76%
+  Actions Present : splits=True, dividends=True
+  Action Events   : split_events=True, dividend_events=True
+  Price Issues    : nonpositive=0, nan=0
+  Volume Issues   : zero_volume_days=0
+
+==========================================================================
+TOTAL PORTFOLIO PERFORMANCE (Core + Tactical)
+==========================================================================
+  Starting Capital : $  100,000.00
+  Ending Capital   : $  832,829.74
+  Total Return     :    +732.83%
+  Sharpe Ratio     :      1.261
+  Max Drawdown     :     -53.80%
+
+==========================================================================
+CORE LAYER (Buy & Hold)
+==========================================================================
+  Entry Price      : $       16.01
+  Shares           :      4995.33
+  Starting Value   : $   80,000.00
+  Ending Value     : $  703,215.75
+  Total Return     :    +779.02%
+  Sharpe Ratio     :      1.117
+  Max Drawdown     :     -60.81%
+
+==========================================================================
+TACTICAL LAYER (Mean-Reversion Sleeve)
+==========================================================================
+  Starting Capital : $   20,000.00
+  Ending Capital   : $  129,613.99
+  Total Return     :    +548.07%
+  Sharpe Ratio     :      0.809
+  Max Drawdown     :     -40.92%
+  Fills            : 24
+  Profit Factor    : 0.93
+  vs Cash Proxy    :    +548.07% (cash=+0.00%)
+
+==========================================================================
+STATIC BASELINE (80/20 Buy-Hold / Cash)
+==========================================================================
+  Starting Capital : $  100,000.00
+  Ending Capital   : $1,020,688.73
+  Total Return     :    +920.69%
+  Sharpe Ratio     :      1.230
+  Max Drawdown     :     -59.71%
+  Note: No rebalancing; constant initial dollar split.
+
+==========================================================================
+MATCHED-ENTRY BASELINE (core=adaptive, tactical=cash)
+==========================================================================
+  Starting Capital : $  100,000.00
+  Ending Capital   : $  943,995.94
+  Total Return     :    +844.00%
+  Sharpe Ratio     :      1.236
+  Max Drawdown     :     -56.66%
+  Note: Same core entry mode as strategy; tactical = cash.
+
+==========================================================================
+SIDE-BY-SIDE COMPARISON
+==========================================================================
+  Metric                        Total     Baseline     Tactical         Core
+  ------------------------------------------------------------
+  Return %                   +732.83%     +920.69%     +548.07%     +779.02%
+  Sharpe                        1.261        1.230        0.809        1.117
+  Max DD %                     -53.80       -59.71       -40.92       -60.81
+
+==========================================================================
+PORTFOLIO DIAGNOSTICS
+==========================================================================
+  Upside Capture   : N/A
+  Downside Capture : N/A
+  Capture Ratio    : N/A
+  Capture ratios N/A for tactical-only or low-exposure runs.
+  Calmar Ratio     : 0.986
+
+--------------------------------------------------------------------------
+RETURN ATTRIBUTION
+--------------------------------------------------------------------------
+  Core (beta)      :   +85.0%  ($ +623,215.75)
+  Tactical (alpha) :   +15.0%  ($ +109,613.99)
+  Note: Tactical layer is a defensive overlay — designed to
+        outperform cash, not replace equity beta.
+
+--------------------------------------------------------------------------
+TACTICAL LAYER DIAGNOSTICS
+--------------------------------------------------------------------------
+  Time in Market   : 13.0%
+  Avg Exposure     : 0.9%
+  Blocked Rate     : 74.2%
+  blocked_by_confidence : 0
+  blocked_by_regime : 23
+  blocked_by_cost : 0
+  regime_no_evidence_bars : 0
+  Return vs Cash   : +548.07% (cash benchmark = +0.00%)
+
+==========================================================================
+TACTICAL LAYER DETAILS
+==========================================================================
+--------------------------------------------------------------------------
+STATISTICAL TESTS
+--------------------------------------------------------------------------
+  Hurst : 1.000  R2=0.999
+  ADF   : p=0.9871 (NON-STATIONARY)
+  Verdict: MIXED
+
+--------------------------------------------------------------------------
+LONG-ONLY ACTIONS SUMMARY (Tactical)
+--------------------------------------------------------------------------
+  BUY         :      8
+  ADD         :      0
+  HOLD        :   1208
+  REDUCE      :      8
+  SELL        :      8
+  BLOCKED     :     23
+
+--------------------------------------------------------------------------
+CONFIDENCE BUCKETS (REGIME PROXY - MR/SW SHARE AT ENTRY)
+--------------------------------------------------------------------------
+  Bucket Trades WinRate AvgPnL AvgHoldDays
+  <0.60           2    50.0%   -20.36        23.0 (LOW SAMPLE)
+  0.60-0.70       3    33.3%  -162.92        17.3 (LOW SAMPLE)
+  0.70-0.80       0     0.0%     0.00         0.0 (LOW SAMPLE)
+  0.80-0.90       1     0.0%  -127.63        30.0 (LOW SAMPLE)
+  0.90-1.00       2   100.0%   295.17        17.5 (LOW SAMPLE)
+  NA              0     0.0%     0.00         0.0 (LOW SAMPLE)
+
+--------------------------------------------------------------------------
+REGIME TIMELINE
+--------------------------------------------------------------------------
+  MEAN_REVERTING      :   150 bars (12.0%)
+  SIDEWAYS            :   355 bars (28.3%)
+  AMBIGUOUS           :   450 bars (35.9%)
+  TRENDING            :   300 bars (23.9%)
+
+--------------------------------------------------------------------------
+EXIT REASON BREAKDOWN
+--------------------------------------------------------------------------
+  Reason                 Count     AvgPnL  AvgDays  Wins  Loss
+  SELL_OVERVALUED            1 $  +23.47    22.0     1     0
+  SELL_STOP                  3 $ -242.51    16.7     0     3
+  SELL_THESIS_BREAK          1 $  +99.28    13.0     1     0
+  SELL_TIME_LIMIT            3 $  -38.31    26.0     1     2
+  UNKNOWN                    8 $  +81.62     0.0     8     0
+
+--------------------------------------------------------------------------
+FILL LOG (Tactical)
+--------------------------------------------------------------------------
+    #        Date  Action       Price  Shares         P&L  Reason
+  --------------------------------------------------------------------
+    1  2022-03-08  BUY       $  22.36      73             MEAN_REVERTING
+    2  2022-03-28  REDUCE    $  28.16      18  $  +104.34  MEAN_REVERTING
+    3  2022-03-29  REDUCE    $  28.59      13  $   +81.02  MEAN_REVERTING
+    4  2022-04-20  SELL      $  21.43      42  $   -38.86  SELL_TIME_LIMIT
+    5  2022-04-25  BUY       $  19.69      81             SIDEWAYS
+    6  2022-05-12  SELL      $  15.58      81  $  -332.98  SELL_STOP
+    7  2022-05-13  BUY       $  17.49      83             SIDEWAYS
+    8  2022-06-28  SELL      $  15.95      83  $  -127.63  SELL_TIME_LIMIT
+    9  2022-07-01  BUY       $  14.16     132             SIDEWAYS
+   10  2022-07-20  REDUCE    $  17.77      33  $  +119.14  SIDEWAYS
+   11  2022-07-21  REDUCE    $  18.01      49  $  +188.79  SIDEWAYS
+   12  2022-07-22  REDUCE    $  17.28      12  $   +37.48  SIDEWAYS
+   13  2022-07-27  REDUCE    $  17.75      19  $   +68.27  SIDEWAYS
+   14  2022-07-28  REDUCE    $  17.95       9  $   +34.08  SIDEWAYS
+   15  2022-07-29  REDUCE    $  18.13       5  $   +19.83  SIDEWAYS
+   16  2022-08-03  SELL      $  18.85       5  $   +23.47  SELL_OVERVALUED
+   17  2024-12-31  BUY       $ 136.03      12             MEAN_REVERTING
+   18  2025-01-27  SELL      $ 120.43      12  $  -187.21  SELL_STOP
+   19  2025-02-28  BUY       $ 123.54      11             MEAN_REVERTING
+   20  2025-03-31  SELL      $ 104.69      11  $  -207.35  SELL_STOP
+   21  2025-04-07  BUY       $ 103.84      14             SIDEWAYS
+   22  2025-04-25  SELL      $ 110.93      14  $   +99.28  SELL_THESIS_BREAK
+   23  2025-12-01  BUY       $ 181.84       6             SIDEWAYS
+   24  2025-12-26  SELL      $ 190.43       6  $   +51.56  SELL_TIME_LIMIT
+
+==========================================================================
+BIAS AUDIT / ASSUMPTIONS
+==========================================================================
+  Data Source      : yfinance
+  Universe         : user-supplied ticker list (may be survivorship biased)
+  Universe Name    : 
+  Universe As-Of   : 
+  Universe Source  : 
+  Price Series     : requested=adjclose, used=adjclose, ohlc_scaled_by_adjclose=True
+  Dividend Assump. : assumes frictionless dividend reinvestment (total return proxy)
+  Taxes            : assumed 0%
+  Borrow/Leverage  : none
+  Slippage/Comm    : slippage=5.0bps, commission=$1.00/fill
+  Stop Execution   : gap-stop aware: low<=stop triggers; if open<stop fill at open else at stop; clamped to [low, high], then slippage/commission applied
+  Cash Yield       : 0.00% annualized
+  Survivorship Drag: 0.00% annual (heuristic sensitivity only)
+  Core CAGR adj    : +54.7758%
+  Static CAGR adj  : +59.4939%
+
+==========================================================================
+DISCLAIMER: Educational only. NOT financial advice.
+Ratio framework is a configurable placeholder; it does NOT replicate
+any proprietary valuation system. Past performance != future results.
+==========================================================================
