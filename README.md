@@ -7,59 +7,59 @@ A sophisticated **long-only mean reversion trading strategy backtester** featuri
 [![GitHub release](https://img.shields.io/github/v/release/chaulemuoichin/quant-mean-reversion-engine-v3.3)](https://github.com/chaulemuoichin/quant-mean-reversion-engine-v3.3/releases)
 [![GitHub stars](https://img.shields.io/github/stars/chaulemuoichin/quant-mean-reversion-engine-v3.3)](https://github.com/chaulemuoichin/quant-mean-reversion-engine-v3.3/stargazers)
 
-## 🎯 Overview
+## Overview
 
 This backtester implements an advanced mean reversion trading system that combines statistical testing, machine learning-inspired regime detection, and quantitative risk management. Built for equity pairs trading and long-only strategies, it features real-time regime adaptation, multi-level exit strategies, and production-ready performance analytics.
 
 **Key Innovation:** Two-layer portfolio architecture separating core (buy-and-hold) and tactical (mean reversion) allocations with optional DCA or adaptive market-state deployment strategies.
 
-## ✨ Key Features
+## Key Features
 
-### 📊 Portfolio Architecture
+### Portfolio Architecture
 - **Two-Layer Design**: Independent core (70-80%) and tactical (20-30%) sleeves with automated rebalancing
 - **Adaptive Core Deployment**: State-based capital deployment (CALM_UPTREND, PULLBACK, HIGH_VOL_DRAWDOWN, NEUTRAL)
 - **DCA Support**: Dollar-cost averaging with configurable slippage and commission modeling
 - **Cash Yield**: Daily compounding interest on idle capital
 
-### 🧠 Regime Classification
+### Regime Classification
 - **Multi-Factor Analysis**: Combines Hurst exponent, ADF stationarity test, half-life, and variance ratio
 - **Adaptive Thresholds**: Dynamic regime boundaries based on historical distribution
 - **Per-Bar Labeling**: Real-time regime assignment (MEAN_REVERTING, SIDEWAYS, TRENDING, AMBIGUOUS)
 - **Configurable Frequency**: Computationally expensive tests run every N bars (default: 5)
 
-### 📈 Signal Generation & Execution
+### Signal Generation & Execution
 - **Z-Score Based Entry/Exit**: Price-to-SMA200 ratio with rolling lookback normalization
-- **Staged Exits**: Multi-level trim thresholds [(z≥0.5: 25%), (z≥1.0: 50%), (z≥2.0: 100%)]
+- **Staged Exits**: Multi-level trim thresholds [(z>=0.5: 25%), (z>=1.0: 50%), (z>=2.0: 100%)]
 - **Reversal Confirmation**: RSI turning points + close-above-prior validation
 - **Quality Filters**: Minimum trade notional ($1,000) and minimum shares (5)
 
-### 🎯 Risk Management
+### Risk Management
 - **Volatility-Adjusted Sizing**: Risk-parity inspired position scaling (0.5x-1.5x multipliers)
 - **ATR-Based Stops**: Dynamic stop-loss at 3x ATR with intraday gap-down handling
 - **Thesis Break Detection**: Consecutive negative SMA slope triggers early exit
 - **Max Holding Period**: 30-day automatic liquidation timer
 
-### 🔬 Advanced Features
+### Advanced Features
 - **Confidence-Weighted Sizing**: Position size scales with regime classification confidence (60-100% range)
 - **Cost-Aware Entry Gate**: Expected return vs. transaction cost hurdle rate
 - **Better Exits**: Time-decay and adverse-z exit logic (min 3 days, max 30 days)
 - **Tactical Vol Targeting**: Realized volatility targeting at 15% annualized
 
-### 📉 Performance Analytics
+### Performance Analytics
 - **Comprehensive Metrics**: Sharpe, Sortino, Calmar, profit factor, max drawdown
 - **Capture Ratios**: Upside/downside capture vs buy-and-hold benchmark
 - **Return Attribution**: Decompose total return into core (beta) vs tactical (alpha) contributions
 - **Regime Performance**: Breakdown of P&L by regime state
 - **Exit Reason Analysis**: Track stop-loss, target, time-decay, and thesis-break exits
 
-### 📊 Visualization & Reporting
+### Visualization & Reporting
 - **Equity Curves**: Total, core, tactical, and baseline comparison plots
 - **Drawdown Analysis**: Underwater plots with peak-to-trough annotations
 - **Exposure Tracking**: Position sizing over time scatter plots
 - **Confidence Bins**: Trade performance stratified by entry confidence (0.02 intervals)
 - **CSV Export**: Full trade ledger with entry confidence, realized P&L, hold days
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -97,7 +97,7 @@ python mean_reversion_standalone.py TSLA --no-regime --entry-at same_close
 python mean_reversion_standalone.py META --debug --window 30
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 quant-mean-reversion-engine-v3.3/
@@ -105,6 +105,13 @@ quant-mean-reversion-engine-v3.3/
 │   ├── ARCHITECTURE.md
 │   ├── CONTRIBUTING.md
 │   └── SETUP.md
+├── samples/
+│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_benchmark.png
+│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_contribution.png
+│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_drawdown.png
+│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_exposure.png
+│   ├── 01_NVDA_TL_mc060_5y_adaptive_sample_underwater.png
+│   └── 01_NVDA_TL_mc060_20260218_012003.txt
 ├── .gitattributes
 ├── .gitignore
 ├── LICENSE
@@ -115,7 +122,7 @@ quant-mean-reversion-engine-v3.3/
 └── test_backtester.py
 ```
 
-## 🧪 Testing
+## Testing
 
 The project includes 50+ unit tests covering:
 - Statistical test accuracy (Hurst, ADF, half-life)
@@ -134,7 +141,7 @@ python -m unittest test_backtester -v
 python -m unittest test_backtester.TestAdaptiveCoreDeployment -v
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Core Parameters
 
@@ -178,50 +185,69 @@ MeanReversionConfig(
 )
 ```
 
-## 📊 Output Examples
+## Sample Output
 
-### Trade Ledger (CSV)
-```
-date,action,regime,entry_confidence,shares,price,realized_pnl,hold_days,reason
-2024-01-15,BUY,MEAN_REVERTING,0.73,50,145.23,0.00,0,
-2024-01-22,REDUCE,SIDEWAYS,0.73,12,148.90,44.04,7,TRIM_Z_0.5
-2024-01-29,SELL,TRENDING,0.73,38,151.45,236.36,14,EXIT_Z_2.0
-```
+**Command:** `python mean_reversion_standalone.py NVDA --two-layer --core-entry adaptive --plot --period 5y`
+
+### Equity Curves (NVDA, 5y, adaptive)
+<img width="750" height="375" alt="NVDA_benchmark" src="https://github.com/user-attachments/assets/0af442f7-0cdc-40b2-bda1-a95c38881c3c" />
+
+### Return Contribution
+<img width="750" height="375" alt="NVDA_contribution" src="https://github.com/user-attachments/assets/2e88d45d-3dce-4fb1-9f4e-07e5cbee79e4" />
+
+### Drawdown vs. Baseline
+<img width="750" height="262" alt="NVDA_drawdown" src="https://github.com/user-attachments/assets/eccccdc2-668f-4408-bc64-45b2982423c0" />
+
+### Exposure vs. Price
+<img width="600" height="375" alt="NVDA_exposure" src="https://github.com/user-attachments/assets/0baccd61-e8a5-4cfa-946f-93cd12d68528" />
+
+### Underwater Chart
+<img width="750" height="262" alt="NVDA_underwater" src="https://github.com/user-attachments/assets/81b06430-c2a1-4aa1-a972-18381859f2de" />
 
 ### Performance Report
 ```
-===============================================================================
-BACKTEST PERFORMANCE (Two-Layer: Core 80% + Tactical 20%)
-===============================================================================
-Starting Capital     : $  100,000.00
-Ending Capital       : $  112,450.30
-Total Return         :     +12.45%
-Annualized Return    :     +14.32%
-Sharpe Ratio         :       1.42
-Sortino Ratio        :       1.89
-Calmar Ratio         :       2.31
-Max Drawdown         :      -6.20%
-Profit Factor        :       2.15
-Win Rate             :      64.3% (27/42 trades)
-Avg Hold Days        :      8.5 days
+==========================================================================
+           MEAN REVERSION BACKTESTER v3.3 - TWO-LAYER PORTFOLIO           
+NVDA -- NVIDIA Corporation
+==========================================================================
+Capital   : $100,000  (Core 80% = $80,000  |  Tactical 20% = $20,000)
+Core Entry: Adaptive (base=60, slow=120, fast=40, vol_target=12%, dd_window=252)
 
+==========================================================================
+TOTAL PORTFOLIO PERFORMANCE (Core + Tactical)
+==========================================================================
+  Starting Capital : $  100,000.00
+  Ending Capital   : $  832,124.90
+  Total Return     :    +732.12%
+  Sharpe Ratio     :      1.262
+  Max Drawdown     :     -53.91%
+
+==========================================================================
+SIDE-BY-SIDE COMPARISON
+==========================================================================
+  Metric                        Total     Baseline     Tactical         Core
+  ------------------------------------------------------------
+  Return %                   +732.12%     +920.69%     +553.40%     +776.81%
+  Sharpe                        1.262        1.230        0.812        1.117
+  Max DD %                     -53.91       -59.71       -39.89       -60.90
+
+--------------------------------------------------------------------------
 RETURN ATTRIBUTION
-Core (Beta)          :  +8,450.20 (68.9%)
-Tactical (Alpha)     :  +3,800.10 (31.1%)
+--------------------------------------------------------------------------
+  Core (beta)      :   +84.9%  ($ +621,444.09)
+  Tactical (alpha) :   +15.1%  ($ +110,680.81)
 
-CAPTURE RATIOS
-Upside Capture       :     112.3%
-Downside Capture     :      68.7%
-Capture Ratio        :       1.63
-
-TACTICAL DIAGNOSTICS
-Time in Market       :      34.2%
-Avg Exposure         :       8.7%
-Blocked Signal Rate  :      18.5%
-Accrued Cash Yield   :    $127.45
+--------------------------------------------------------------------------
+TACTICAL LAYER DIAGNOSTICS
+--------------------------------------------------------------------------
+  Time in Market   : 9.3%
+  Avg Exposure     : 0.6%
+  Blocked Rate     : 88.5%
+  blocked_by_confidence : 23
+  blocked_by_regime     : 23
 ```
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Aggregating Multi-Run Results
 
@@ -267,13 +293,13 @@ results = engine.run(df, ratio_z, regime_labels, regime_scores)
 print(f"Final Equity: ${results['total_equity_curve'][-1]:,.2f}")
 ```
 
-## 📚 Technical Documentation
+## Technical Documentation
 
 ### Statistical Tests
 
-1. **Hurst Exponent** (R/S method, R² ≥ 0.80 quality gate)
+1. **Hurst Exponent** (R/S method, R² >= 0.80 quality gate)
    - H < 0.5: Mean reverting
-   - H ≈ 0.5: Random walk
+   - H ~= 0.5: Random walk
    - H > 0.5: Trending
    - Clamped to [0, 1] range when out-of-bounds
 
@@ -282,31 +308,31 @@ print(f"Final Equity: ${results['total_equity_curve'][-1]:,.2f}")
    - Returns dict with {adf_stat, p_value, is_stationary, note}
 
 3. **Half-Life** (OU process estimation)
-   - λ from Δy[t] = λ·(μ - y[t-1]) + ε
-   - Half-life = ln(2) / λ days
+   - lambda from dy[t] = lambda*(mu - y[t-1]) + epsilon
+   - Half-life = ln(2) / lambda days
 
 4. **Variance Ratio** (Lo-MacKinlay test)
-   - VR(q) = Var[q-day] / (q × Var[1-day])
+   - VR(q) = Var[q-day] / (q x Var[1-day])
    - VR < 1: Mean reversion
    - VR > 1: Momentum
 
 ### Adaptive Core Deployment States
 
 ```
-CALM_UPTREND:      trend=1, dd<10%, σ<target  →  deploy C/slow_days
-PULLBACK:          trend=0, 5%≤dd≤20%         →  deploy C/fast_days
-HIGH_VOL_DRAWDOWN: dd≥15% or σ≥target         →  deploy C/fast_days × vol_scale
-NEUTRAL:           everything else             →  deploy C/base_days
-WAITING:           before adaptive_start       →  no deployment
-DEPLETED:          cash exhausted              →  no deployment
+CALM_UPTREND:      trend=1, dd<10%, vol<target  ->  deploy C/slow_days
+PULLBACK:          trend=0, 5%<=dd<=20%         ->  deploy C/fast_days
+HIGH_VOL_DRAWDOWN: dd>=15% or vol>=target       ->  deploy C/fast_days x vol_scale
+NEUTRAL:           everything else              ->  deploy C/base_days
+WAITING:           before adaptive_start        ->  no deployment
+DEPLETED:          cash exhausted               ->  no deployment
 ```
 
 ### Regime Classification Logic
 
 Regime score = weighted average of:
-- Hurst ∈ [0, 0.45]: +1 (mean reversion)
+- Hurst in [0, 0.45]: +1 (mean reversion)
 - ADF p-value < 0.05: +1 (stationary)
-- Half-life ∈ [5, 60] days: +1 (tractable)
+- Half-life in [5, 60] days: +1 (tractable)
 - Variance ratio < 0.80: +1 (mean reversion)
 
 Adaptive thresholds (10th/90th percentiles of rolling scores):
@@ -315,7 +341,7 @@ Adaptive thresholds (10th/90th percentiles of rolling scores):
 - Score < p10: TRENDING
 - Insufficient data: AMBIGUOUS
 
-## 🐛 Known Limitations
+## Known Limitations
 
 1. **Long-Only**: No short selling or short strategies
 2. **Single Asset**: Designed for single-ticker analysis (portfolio mode uses sequential single-ticker runs)
@@ -323,7 +349,7 @@ Adaptive thresholds (10th/90th percentiles of rolling scores):
 4. **No Order Book**: Assumes perfect liquidity at open/close
 5. **Simplified Costs**: Fixed slippage + flat commission (no bid-ask spread model)
 
-## 📝 Citation
+## Citation
 
 If you use this backtester in your research, please cite:
 
@@ -336,7 +362,7 @@ If you use this backtester in your research, please cite:
 }
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! Areas for enhancement:
 - Multi-asset portfolio mode with correlation analysis
@@ -345,23 +371,23 @@ Contributions welcome! Areas for enhancement:
 - Options overlay strategies (covered calls, protective puts)
 - Walk-forward optimization framework
 
-## 📄 License
+## License
 
 MIT License - see LICENSE file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **statsmodels**: ADF test implementation
 - **yfinance**: Historical market data API
 - **pandas/numpy**: Core data processing
 - **matplotlib**: Visualization engine
 
-## 📧 Contact
+## Contact
 
-**Chau Le**  
-📧 chau.le@marquette.edu  
-🔗 [LinkedIn](https://www.linkedin.com/in/lechau1801/) | [GitHub](https://github.com/chaulemuoichin)
+**Chau Le**
+chau.le@marquette.edu
+[LinkedIn](https://www.linkedin.com/in/lechau1801/) | [GitHub](https://github.com/chaulemuoichin)
 
 ---
 
-**Disclaimer**: This software is for educational and research purposes only. Past performance does not guarantee future results. Trading involves substantial risk of loss. Always conduct your own due diligence before investing.
+*Disclaimer: This software is for educational and research purposes only. Past performance does not guarantee future results. Trading involves substantial risk of loss. Always conduct your own due diligence before investing.*
