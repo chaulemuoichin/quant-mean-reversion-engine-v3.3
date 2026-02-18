@@ -6,7 +6,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 1. **Fork and Clone**
 ```bash
-git clone https://github.com/yourusername/mean-reversion-backtester.git
+git clone [https://github.com/yourusername/mean-reversion-backtester](https://github.com/chaulemuoichin/quant-mean-reversion-engine-v3.3).git
 cd mean-reversion-backtester
 ```
 
