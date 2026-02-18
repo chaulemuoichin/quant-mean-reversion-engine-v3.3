@@ -100,19 +100,19 @@ python mean_reversion_standalone.py META --debug --window 30
 ## 📁 Project Structure
 
 ```
-mean-reversion-backtester/
-├── mean_reversion_standalone.py    # Main backtester (6600+ lines)
-├── test_backtester.py              # Comprehensive test suite (4400+ lines)
-├── aggregate_confidence_bins.py    # Post-run aggregation utility
-├── requirements.txt                # Python dependencies
-├── README.md                       # This file
-├── reports/                        # Output directory (auto-created)
-│   ├── TICKER_DATE_TRADES_*.csv   # Trade ledgers
-│   ├── TICKER_DATE_curves.csv     # Equity curves
-│   ├── TICKER_DATE_benchmark.png  # Comparative charts
-│   └── aggregated_bins_*.csv      # Pooled confidence analysis
-└── tests/
-    └── fixtures/                   # Synthetic data generators
+quant-mean-reversion-engine-v3.3/
+├── docs/                             
+│   ├── ARCHITECTURE.md
+│   ├── CONTRIBUTING.md
+│   └── SETUP.md
+├── .gitattributes
+├── .gitignore
+├── LICENSE
+├── README.md
+├── aggregate_confidence_bins.py
+├── mean_reversion_standalone.py
+├── requirements.txt
+└── test_backtester.py
 ```
 
 ## 🧪 Testing
